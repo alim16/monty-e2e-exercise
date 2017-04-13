@@ -8,7 +8,6 @@ module.exports = function () {
     this.Given(/^I filter by option "([^"]*)"$/, (option) => {topsPage.selectOptionToFilterBy(option)})
     this.Given(/^I select colour "([^"]*)"$/, (colour) => {topsPage.filterByColour(colour)})
     this.Given(/^I apply these filters$/, topsPage.applyFilters)
-    //this.Then(/^Filter button has ([\d]) filter$/, (number) => {expect(topsPage.filterCount()).equal("("+number+")")}) //might extract the brackets later
     this.Then(/^Filter button has ([\d]|no) filter([s]?)$/, (value) => {
         if(value=="no"){value=""};
         expect(topsPage.filterCount()).equal(value)
