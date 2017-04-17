@@ -15,15 +15,15 @@ class clothingTopsPage extends basepage{
 
     selectOptionToFilterBy(option) {
         browser.waitForExist(".Filters-row",5000)
-        browser.click('//*[@id="root"]/div/div[2]/div[3]//div[2]//header//span[text()="'+option+'"]'); //refactor
+        browser.click('//div[contains(@class,"PlpContainer-productListContainer")]//span[text()="'+option+'"]'); 
+       //div[contains(@class,"PlpContainer-productListContainer")]//span[text()="Colour"]  ///current xpath
     };
-     filterByColour(colour) {
-         colour = colour.toLowerCase();
-         // can't get it to work with normal selector probably because of iframe or something
-         return browser.click('//*[@id="root"]/div/div[2]/div[3]//div[2]/div[3]//div[2]/article[1]/div[2]//button/span[text()="'+colour+'"]') //refactor
-         //return browser.click('//header//span[text()=Black]')
-         //return browser.frame(1).click('*=Black') 
-         // $x("//header//span[contains(@class, 'RefinementList-label') and .//text()='Black']")
+    
+    filterByColour(colour) {
+        colour = colour.toLowerCase();
+        return browser.click('//div[contains(@class,"PlpContainer-productListContainer")]//div[contains(@class,"ValueOption")]//span[text()="'+colour+'"]')
+        //div[contains(@class,"PlpContainer-productListContainer")]//div[contains(@class,'ValueOption')]//span[text()="brown"] //should work since option names are uni
+       
     };
 
     applyFilters(){ browser.click('.Refinements-applyButton') }
@@ -31,7 +31,7 @@ class clothingTopsPage extends basepage{
 
     filterCount(){
         browser.pause(2)
-        return browser.getText('.Filters-refineButton span').replace(/[()]/g,"");
+        return browser.getText('.Filters-refineButton span').replace(/[()]/g,""); //removes brackets before returning filter value
     }
 
     listOfProductsVisible(){
